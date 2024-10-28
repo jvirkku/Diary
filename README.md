@@ -1,7 +1,7 @@
 Keywords:
--diary
--note, title, text, date(automatic), importance(3levels), ispublic(boolean), category(choose from existing)
--categories: school, work, personal, hobbies (model for these)
+-diary         
+-note, title, text, date(automatic), importance(3levels), ispublic(boolean), category(choose from existing)         
+-categories: school, work, personal, hobbies (model for these)          
 -comments?
 
 
