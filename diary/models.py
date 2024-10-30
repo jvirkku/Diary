@@ -14,7 +14,7 @@ class Category(models.Model):
     ]
 
     category_name = models.CharField(max_length=100)
-    category_color = models.CharField(max_length=7, choices=COLOUR_CHOICES, default='#FFFFFF')  #default to white
+    category_colour = models.CharField(max_length=7, choices=COLOUR_CHOICES, default='#FFFFFF')  #default to white
 
     class Meta:
         verbose_name_plural = 'Categories'  # Plural name
