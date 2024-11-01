@@ -1,0 +1,17 @@
+{% extends 'diary/base.html' %}
+
+{% block page_header %}
+    <h1>{{ note.title }}</h1>
+{% endblock page_header %}
+
+{% block content %}
+    <p>{{ note.my_note }}</p>
+
+    <!-- Additional details -->
+    <h2>Note Details</h2>
+    <p><strong>Importance:</strong> {{ note.get_importance_display }}</p>
+    <p><strong>Public:</strong> {{ note.public|yesno:"Yes,No" }}</p>
+    <p><strong>Date Added:</strong> {{ note.date_added|date:"Y-m-d H:i" }}</p>
+    <p><strong>Date Modified:</strong> {{ note.date_modified|date:"Y-m-d H:i" }}</p>
+
+{% endblock content %}

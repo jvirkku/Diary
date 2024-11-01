@@ -13,4 +13,6 @@ urlpatterns = [
     path('category/<int:category_id>/', views.category, name='category'),
     # Listing all notes
     path('notes/', views.all_notes, name='all_notes'),
+    #Page for a specific note
+    path('note/<int:note_id>/', views.note, name='note')
 ]

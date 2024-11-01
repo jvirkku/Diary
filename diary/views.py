@@ -26,3 +26,8 @@ def all_notes(request):
     # Dictionary containing all the notes. Keys - used in the template to access data. Values - data we send to the template.
     context = {'notes' : notes} 
     return render(request, 'diary/notes.html', context)
+
+def note(request, note_id):
+    """Note page that shows the contents of a single note"""
+    note = Note.objects.get(id=note_id)
+    return render(request, 'diary/note.html', {'note': note})

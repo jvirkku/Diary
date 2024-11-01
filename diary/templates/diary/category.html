@@ -10,7 +10,8 @@
     <ul>
         {% for note in notes %}
             <li>
-                    {{ note.my_note }}</a>
+                <a href="{% url 'diary:note' note.id %}">
+                    {{ note.title }}</a>
             </li>
         {% empty %}
             <li>No notes have been created for this category</li>
