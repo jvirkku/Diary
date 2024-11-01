@@ -30,6 +30,7 @@ class Note(models.Model):
         (3, 'High'),
     ]
     
+    title = models.CharField(max_length = 50, default="Untitled") # each note will have a title
     my_note=models.TextField(default="") #string is accepted
     importance=models.IntegerField(choices=IMPORTANCE_CHOICES, default=1)#by default the importance is 1=low
     public=models.BooleanField(default=False)#by default this is not chosen

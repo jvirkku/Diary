@@ -6,5 +6,7 @@ from . import views
 app_name = 'diary'
 urlpatterns = [
     #homepage
-    path('', views.index, name='index')
+    path('', views.index, name='index'),
+    # Listing all notes
+    path('notes/', views.all_notes, name='all_notes')
 ]

@@ -2,8 +2,12 @@
 diary_env
 
 # Byte-compiled / optimized / DLL files
+diary_project/__pycache__/
+diary/__pycache__/
+diary/migrations/__pycache__/
 __pycache__/
 *.py[cod]
+*.pyc
 
 # C extensions
 *.so

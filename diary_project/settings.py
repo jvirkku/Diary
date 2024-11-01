@@ -34,6 +34,9 @@ INSTALLED_APPS = [
     # my apps
     'diary',
 
+    # Third party apps
+    'django_bootstrap5',
+
     #default django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -125,3 +128,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# My settings
+LOGIN_REDIRECT_URL = 'diary:index'      # redirecting logged user to the main page 
+LOGOUT_REDIRECT_URL = 'diary:index'     # redirecting logged out user to the main page
