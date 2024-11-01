@@ -1,0 +1,17 @@
+{% extends 'diary/base.html' %}
+
+{% block content %}
+    <p>Categories</p>
+
+    <ul>
+        {% for category in categories %}
+            <li>
+                <a href="{% url 'diary:category' category.id %}">
+                    {{ category.category_name }}</a>
+            </li>
+        {% empty %}
+            <li>No categories have been created yet</li>
+        {% endfor %}
+    </ul>
+    
+{% endblock content %}
