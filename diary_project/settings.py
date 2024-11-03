@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # my apps
     'diary',
+    'accounts',
 
     # Third party apps
     'django_bootstrap5',

@@ -24,6 +24,36 @@
                     <li class="nav item">
                         <a class="nav-link" href="{% url 'diary:all_notes' %}">Your Notes</a>
                     </li>
+
+        <!-- Account-related links -->
+
+        <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <span class="navbar-text me-2">Hello, {{ user.username }}.
+                  </span></li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:register' %}">
+                    Register</a></li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:login' %}">
+                    Log in</a></li>
+            {% endif %}
+  
+          </ul><!-- End of account-related links -->
+
+          {% if user.is_authenticated %}
+          <form action="{% url 'accounts:logout' %}" method='post'>
+            {% csrf_token %}
+            <button name='submit' class='btn btn-outline-secondary btn-sm'>
+              Log out</button>
+          </form>
+        {% endif %}
+
+      </div> <!-- Closes collapsible parts of navbar -->
+
         </div>
     </nav>
 
