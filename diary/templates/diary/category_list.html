@@ -13,5 +13,8 @@
             <li>No categories have been created yet</li>
         {% endfor %}
     </ul>
+
+    <!-- Button to add a new category -->
+    <a href="{% url 'diary:add_category' %}" class="btn btn-primary">Add New Category</a>
     
 {% endblock content %}

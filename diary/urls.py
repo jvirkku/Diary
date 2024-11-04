@@ -9,10 +9,15 @@ urlpatterns = [
     path('', views.index, name='index'),
     #Page that shows all created categories
     path('category_list/', views.category_list, name='category_list'),
+    #Add category page
+    path('add_category/', views.add_category, name='add_category'),
     #Page for a specific category and all its notes
     path('category/<int:category_id>/', views.category, name='category'),
     # Listing all notes
     path('notes/', views.all_notes, name='all_notes'),
     #Page for a specific note
-    path('note/<int:note_id>/', views.note, name='note')
+    path('note/<int:note_id>/', views.note, name='note'),
+    #Add note page
+    path('category/<int:category_id>/add_note/', views.add_note, name='add_note'),
+
 ]
