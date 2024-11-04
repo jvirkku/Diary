@@ -3,7 +3,7 @@
 {% block page_header %}
 
     <h3>Press here to add a new note:
-        <a href="{% url 'diary:index' %}">Add a note</a>
+        <a href="{% url 'diary:category_list' %}">Add a note</a>
     </h3>
 
 {% endblock page_header %}
@@ -11,14 +11,13 @@
 {% block content %} 
 
     <ul class="list-group border-bottom pb-2 mb-4">
-        {% for note in diary %}
+        {% for note in notes %}
             <!-- Here we will iterate through notes -->
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{ note.title }}</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <p class="card-text">{{ note.my_note }}</p>
+                    <a href="#" class="card-link">Edit note</a>
                 </div>
             </div>
         {% empty %}
