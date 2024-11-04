@@ -21,4 +21,7 @@
     <!-- Add Note Button -->
     <a href="{% url 'diary:add_note' category.id %}" class="btn btn-primary mb-3">Add Note</a>
 
+    <!-- Edit Category Button -->
+    <a href="{% url 'diary:edit_category' category.id %}" class="btn btn-primary mb-3">Edit Category</a>
+
 {% endblock content %}

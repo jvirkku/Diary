@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from .models import Note, Category
-from .forms import CategoryForm, NoteForm
+from .forms import CategoryForm, NoteForm, NoteExtendedForm
 
 # Create your views here.
 def index(request):
@@ -45,6 +45,19 @@ def category(request, category_id):
     return render(request, 'diary/category.html', {'category': category, 'notes': notes})
 
 @login_required
+def edit_category(request, category_id):
+    category = Category.objects.get(id=category_id)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect('diary:category', category_id=category.id)
+    else:
+        form = CategoryForm(instance=category)
+
+    return render(request, 'diary/edit_category.html', {'form': form, 'category': category})
+
+@login_required
 def add_note(request, category_id):
     """Add note page"""
     category = Category.objects.get(id=category_id)
@@ -60,9 +73,37 @@ def add_note(request, category_id):
     
     return render(request, 'diary/add_note.html', {'form': form, 'category': category})
 
+@login_required
+#This is for the Index page "add note" button 
+def add_note_extended(request):
+    categories = Category.objects.all()  # Get all categories
+    form = NoteExtendedForm(request.POST or None)
+    
+    if request.method == "POST" and form.is_valid():
+        note = form.save(commit=False)
+        # Get the selected category by its ID
+        category_id = request.POST.get('category')
+        note.category = Category.objects.get(id=category_id)
+        note.save()
+        return redirect('diary:index')  # Redirect after saving
+    
+    return render(request, 'diary/add_note_extended.html', {'form': form, 'categories': categories})
 
 @login_required
 def note(request, note_id):
     """Note page that shows the contents of a single note"""
     note = Note.objects.get(id=note_id)
     return render(request, 'diary/note.html', {'note': note})
+
+@login_required
+def edit_note(request, note_id):
+    note = Note.objects.get(id=note_id)
+    if request.method == 'POST':
+        form = NoteExtendedForm(request.POST, instance=note)
+        if form.is_valid():
+            form.save()
+            return redirect('diary:note', note_id=note.id)
+    else:
+        form = NoteExtendedForm(instance=note)
+
+    return render(request, 'diary/edit_note.html', {'form': form, 'note': note})

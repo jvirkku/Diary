@@ -18,7 +18,7 @@
                 <li class="list-group-item {{ note.category|lower }}-category">Date Added: {{ note.date_added|date:"Y-m-d H:i" }}</li>
                 <li class="list-group-item {{ note.category|lower }}-category">Date Modified: {{ note.date_modified|date:"Y-m-d H:i" }}</li>
               </ul>          
-            <a href="#" class="card-link">Edit note</a>
+            <a href="{% url 'diary:edit_note' note.id %}" class="card-link">Edit note</a>
         </div>
     </div>
 

@@ -17,5 +17,10 @@ urlpatterns = [
     path('note/<int:note_id>/', views.note, name='note'),
     #Add note page
     path('category/<int:category_id>/add_note/', views.add_note, name='add_note'),
-
+    #Add note page extended
+    path('add_note_extended/', views.add_note_extended, name='add_note_extended'),
+    #Edit note page
+    path('edit_note/<int:note_id>/', views.edit_note, name='edit_note'),
+    #Edit category page
+    path('edit_category/<int:category_id>/', views.edit_category, name='edit_category'),
 ]

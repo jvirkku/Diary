@@ -20,7 +20,7 @@
 
 {% if user.is_authenticated %}
 <h3 class="text-center pb-4">Press here to add a new note:
-    <a href="{% url 'diary:category_list' %}">Add a note</a>
+    <a href="{% url 'diary:add_note_extended' %}">Add a note</a>
 </h3>
 {% endif %} 
 
@@ -41,7 +41,7 @@
                             <li class="list-group-item {{ note.category|lower }}-category">Date Added: {{ note.date_added|date:"Y-m-d H:i" }}</li>
                             <li class="list-group-item {{ note.category|lower }}-category">Date Modified: {{ note.date_modified|date:"Y-m-d H:i" }}</li>
                         </ul>          
-                        <a href="#" class="card-link">Edit note</a>
+                        <a href="{% url 'diary:edit_note' note.id %}" class="card-link">Edit note</a>
                     </div>
                 </div>
             </div>
