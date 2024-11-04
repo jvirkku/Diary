@@ -1,17 +1,25 @@
 {% extends 'diary/base.html' %}
 
 {% block page_header %}
-    <h1>{{ note.title }}</h1>
 {% endblock page_header %}
 
 {% block content %}
-    <p>{{ note.my_note }}</p>
 
-    <!-- Additional details -->
-    <h2>Note Details</h2>
-    <p><strong>Importance:</strong> {{ note.get_importance_display }}</p>
-    <p><strong>Public:</strong> {{ note.public|yesno:"Yes,No" }}</p>
-    <p><strong>Date Added:</strong> {{ note.date_added|date:"Y-m-d H:i" }}</p>
-    <p><strong>Date Modified:</strong> {{ note.date_modified|date:"Y-m-d H:i" }}</p>
+    <div class="card {{ note.category|lower }}-category" style="width: 20rem;">
+        <div class="card-body">
+            <h5 class="card-title text-center fs-3">{{ note.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary text-center pb-3">Category: {{ note.category }}</h6>
+            <p class="card-text">{{ note.my_note }}</p>
+            <!-- Additional info about the note -->
+            <h6 class="card-subtitle mb-2 text-body-secondary text-center pt-4">Details</h6>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item {{ note.category|lower }}-category">Importance: {{ note.get_importance_display }}</li>
+                <li class="list-group-item {{ note.category|lower }}-category">Public: {{ note.public|yesno:"Yes,No" }}</li>
+                <li class="list-group-item {{ note.category|lower }}-category">Date Added: {{ note.date_added|date:"Y-m-d H:i" }}</li>
+                <li class="list-group-item {{ note.category|lower }}-category">Date Modified: {{ note.date_modified|date:"Y-m-d H:i" }}</li>
+              </ul>          
+            <a href="#" class="card-link">Edit note</a>
+        </div>
+    </div>
 
 {% endblock content %}

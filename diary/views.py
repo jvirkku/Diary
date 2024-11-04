@@ -47,13 +47,6 @@ def add_note(request, category_id):
     
     return render(request, 'diary/add_note.html', {'form': form, 'category': category})
 
-def all_notes(request):
-    """ Listing all available notes on the /notes page """
-    notes = Note.objects.order_by('date_added')
-    # Dictionary containing all the notes. Keys - used in the template to access data. Values - data we send to the template.
-    context = {'notes' : notes} 
-    return render(request, 'diary/notes.html', context)
-
 def note(request, note_id):
     """Note page that shows the contents of a single note"""
     note = Note.objects.get(id=note_id)
