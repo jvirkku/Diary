@@ -133,3 +133,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # My settings
 LOGIN_REDIRECT_URL = 'diary:index'      # redirecting logged user to the main page 
 LOGOUT_REDIRECT_URL = 'diary:index'     # redirecting logged out user to the main page
+LOGIN_URL="accounts:login"

@@ -9,17 +9,20 @@ def index(request):
     """Index page for diary"""
     return render(request, 'diary/index.html')
 
+@login_required
 def category_list(request):
     """Categories page that shows all categories"""
     category_list = Category.objects.all()
     return render(request, 'diary/category_list.html', {'categories': category_list})
 
+@login_required
 def category(request, category_id):
     """Category page that shows one category and all of its notes"""
     category = Category.objects.get(id=category_id)
     notes = Note.objects.filter(category=category)
     return render(request, 'diary/category.html', {'category': category, 'notes': notes})
 
+@login_required
 def all_notes(request):
     """ Listing all available notes on the /notes page """
     notes = Note.objects.order_by('date_added')
@@ -27,6 +30,7 @@ def all_notes(request):
     context = {'notes' : notes} 
     return render(request, 'diary/notes.html', context)
 
+@login_required
 def note(request, note_id):
     """Note page that shows the contents of a single note"""
     note = Note.objects.get(id=note_id)
