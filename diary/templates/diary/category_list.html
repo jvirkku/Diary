@@ -1,20 +1,25 @@
 {% extends 'diary/base.html' %}
 
 {% block content %}
-    <p>Categories</p>
-
-    <ul>
-        {% for category in categories %}
-            <li>
-                <a href="{% url 'diary:category' category.id %}">
-                    {{ category.category_name }}</a>
-            </li>
-        {% empty %}
-            <li>No categories have been created yet</li>
-        {% endfor %}
-    </ul>
-
-    <!-- Button to add a new category -->
-    <a href="{% url 'diary:add_category' %}" class="btn btn-primary">Add New Category</a>
+    <h3 class="text-center pb-4">Categories</h3>
+    <div class="container">
+        <div class="d-flex justify-content-center flex-wrap">
+            {% for category in categories %}
+                <div class="p-2">
+                        <a href="{% url 'diary:category' category.id %}" class="btn btn-success btn-lg">
+                            {{ category.category_name }}
+                        </a>
+                </div>
+            {% empty %}
+                    <h3>No categories have been created yet</h3>
+            {% endfor %}
+        </div>
+        <!-- Button to add a new category -->
+        <div class="row mt-3 justify-content-center">
+            <div class="col-auto">
+            <a href="{% url 'diary:add_category' %}" class="btn btn-primary mt-2">Add New Category</a>
+            </div>
+        </div>
+    </div>
     
 {% endblock content %}

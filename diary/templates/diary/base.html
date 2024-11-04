@@ -13,10 +13,10 @@
 
 </head>
 <body>
-  <nav class="navbar navbar-expand-md navbar-light bg-success-subtle mb-4 border">
+  <nav class="navbar navbar-expand-md navbar-light bg-success-subtle mb-4 border ps-5 pe-5">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'diary:index' %}">Diary</a>         <!-- app name and then the URL pattern from urls.py with a given name -->
-      <a href="{% url 'diary:category_list' %}">Categories</a>
+      <a class="nav-link active" href="{% url 'diary:category_list' %}">Categories</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
           <span class="navbar-toggler-icon"></span>
         </button>
