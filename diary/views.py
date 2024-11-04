@@ -7,10 +7,16 @@ from .forms import CategoryForm, NoteForm
 # Create your views here.
 def index(request):
     """Index page for diary"""
-    notes = Note.objects.filter(public=True).order_by('date_added') #if not logged in, public notes are visible
-    # Dictionary containing all the notes. Keys - used in the template to access data. Values - data we send to the template.
-    context = {'notes' : notes} 
+    if request.user.is_authenticated:
+         notes = Note.objects.order_by('date_added')
+         context = {'notes' : notes} 
+    else:
+        notes = Note.objects.filter(public=True).order_by('date_added') #if not logged in, public notes are visible
+        # Dictionary containing all the notes. Keys - used in the template to access data. Values - data we send to the template.
+        context = {'notes' : notes} 
     return render(request, 'diary/index.html', context)
+
+
 
 @login_required
 def category_list(request):
