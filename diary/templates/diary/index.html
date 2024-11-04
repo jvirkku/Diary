@@ -1,7 +1,7 @@
 {% extends 'diary/base.html' %}
 
-{% block page_header %}
-
+{% block page_header %} 
+    {% if not user.is_authenticated %}
     <div class="p-3 mb-4 bg-light border rounded-3">
         <div class="container-fluid py-4">
             <h1 class="display-3">Create your own notes!</h1>
@@ -11,15 +11,18 @@
             <a class="btn btn-primary btn-lg mt-1" href="{% url 'accounts:register' %}">Register &raquo;</a>
         </div>
     </div>
-
+    {% endif %} 
 {% endblock page_header %}
 
 
 
 {% block content %} 
+
+{% if user.is_authenticated %}
 <h3>Press here to add a new note:
     <a href="{% url 'diary:category_list' %}">Add a note</a>
 </h3>
+{% endif %} 
 
 <ul class="list-group border-bottom pb-2 mb-4">
     {% for note in notes %}
