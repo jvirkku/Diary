@@ -7,9 +7,33 @@
             <h1 class="display-3">Create your own notes!</h1>
             <p class="lead">Add and categorise your notes, ideas and anything you like.</p>
 
-            <!-- url will be changed once registration & login are done -->
+
             <a class="btn btn-primary btn-lg mt-1" href="{% url 'accounts:register' %}">Register &raquo;</a>
         </div>
     </div>
 
 {% endblock page_header %}
+
+
+
+{% block content %} 
+<h3>Press here to add a new note:
+    <a href="{% url 'diary:category_list' %}">Add a note</a>
+</h3>
+
+<ul class="list-group border-bottom pb-2 mb-4">
+    {% for note in notes %}
+        <!-- Here we will iterate through notes -->
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ note.title }}</h5>
+                <p class="card-text">{{ note.my_note }}</p>
+                <a href="#" class="card-link">Edit note</a>
+            </div>
+        </div>
+    {% empty %}
+        <li class="list-group-item">No notes have been created yet!</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

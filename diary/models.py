@@ -13,7 +13,7 @@ class Category(models.Model):
         ('#FFFFFF', 'White'),
     ]
 
-    category_name = models.CharField(max_length=100)
+    category_name = models.CharField(max_length=100, default="No category")
     category_colour = models.CharField(max_length=7, choices=COLOUR_CHOICES, default='#FFFFFF')  #default to white
 
     class Meta:
