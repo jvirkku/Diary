@@ -18,6 +18,7 @@ def category_list(request):
     category_list = Category.objects.all()
     return render(request, 'diary/category_list.html', {'categories': category_list})
 
+@login_required
 def add_category(request):
     """Add category page"""
     if request.method == 'POST':
@@ -30,12 +31,14 @@ def add_category(request):
     
     return render(request, 'diary/add_category.html', {'form': form})
 
+@login_required
 def category(request, category_id):
     """Category page that shows one category and all of its notes"""
     category = Category.objects.get(id=category_id)
     notes = Note.objects.filter(category=category)
     return render(request, 'diary/category.html', {'category': category, 'notes': notes})
 
+@login_required
 def add_note(request, category_id):
     """Add note page"""
     category = Category.objects.get(id=category_id)
