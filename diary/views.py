@@ -3,12 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from .models import Note, Category
 from .forms import CategoryForm, NoteForm, NoteExtendedForm
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
     """Index page for diary"""
     if request.user.is_authenticated:
-         notes = Note.objects.order_by('date_added')
+         notes= Note.objects.filter(Q(owner=request.user) | Q(public=True) ).order_by('date_added')
          context = {'notes' : notes} 
     else:
         notes = Note.objects.filter(public=True).order_by('date_added') #if not logged in, public notes are visible
@@ -42,6 +43,9 @@ def category(request, category_id):
     """Category page that shows one category and all of its notes"""
     category = Category.objects.get(id=category_id)
     notes = Note.objects.filter(category=category)
+    #note = Note.objects.get(id=note_id)
+    #if note.owner != request.user:
+    #    raise Http404
     return render(request, 'diary/category.html', {'category': category, 'notes': notes})
 
 @login_required
@@ -64,9 +68,14 @@ def add_note(request, category_id):
     if request.method == 'POST':
         form = NoteForm(request.POST)
         if form.is_valid():
+            #note = form.save(commit=False)
+            #note.category = category
+            #note.save()
             note = form.save(commit=False)
             note.category = category
+            note.owner=request.user
             note.save()
+
             return redirect('diary:category', category_id=category.id)
     else:
         form = NoteForm()
@@ -84,6 +93,7 @@ def add_note_extended(request):
         # Get the selected category by its ID
         category_id = request.POST.get('category')
         note.category = Category.objects.get(id=category_id)
+        note.owner=request.user
         note.save()
         return redirect('diary:index')  # Redirect after saving
     
@@ -98,6 +108,8 @@ def note(request, note_id):
 @login_required
 def edit_note(request, note_id):
     note = Note.objects.get(id=note_id)
+    if note.owner != request.user:
+        raise Http404
     if request.method == 'POST':
         form = NoteExtendedForm(request.POST, instance=note)
         if form.is_valid():

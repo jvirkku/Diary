@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     """A category that the user can asign to notes"""
@@ -37,6 +38,7 @@ class Note(models.Model):
     date_added=models.DateTimeField(auto_now_add=True) #adds date automatically to new reviews
     date_modified=models.DateTimeField(auto_now=True) #timestamp if review is modified
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)  # Allows null category = a note without a category
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     #category=models.ForeignKey(Category, on_delete=models.CASCADE, default=1)#connects reviews to categories in database
     #                                                      #if a category is deleted, so are the notes
 
