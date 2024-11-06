@@ -3,14 +3,14 @@
 
 {% block content %}
 
-    <h2>Add New Note</h2>
+    <h2 class="mb-3">Add New Note</h2>
 
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Save Note</button>
+        <button type="submit" class="btn btn-primary mb-2">Save Note</button>
     </form>
     
-    <a href="{% url 'diary:index' %}">Back to Diary</a>
+    <a href="{% url 'diary:index' %}" class="fs-5 fw-bold">Back to Diary</a>
 
 {% endblock content %}

@@ -17,8 +17,8 @@
 <body>
   <nav class="navbar navbar-expand-md navbar-light bg-success-subtle mb-4 border ps-5 pe-5">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'diary:index' %}">Diary</a>         <!-- app name and then the URL pattern from urls.py with a given name -->
-      <a class="nav-link active" href="{% url 'diary:category_list' %}">Categories</a>
+      <a class="navbar-brand fs-3" href="{% url 'diary:index' %}">Diary</a>         <!-- app name and then the URL pattern from urls.py with a given name -->
+      <a class="nav-link active fs-5" href="{% url 'diary:category_list' %}">Categories</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,7 +30,7 @@
 
           {% if user.is_authenticated %}
             <li class="nav-item">
-              <span class="navbar-text me-2">Hello, {{ user.username }}.</span>
+              <span class="navbar-text me-2 fs-5">Hello, {{ user.username }}.</span>
             </li>
           {% else %}
             <li class="nav-item">

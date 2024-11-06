@@ -2,13 +2,13 @@
 
 {% block content %}
 
-    <h2>Add New Note for {{ category.category_name }}</h2>
+    <h2 class="mb-3">Add New Note for {{ category.category_name }}</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Save Note</button>
+        <button type="submit" class="btn btn-primary mb-2">Save Note</button>
     </form>
     
-    <a href="{% url 'diary:category' category.id %}">Back to {{ category.category_name }}</a>
+    <a href="{% url 'diary:category' category.id %}" class="fs-5 fw-bold">Back to {{ category.category_name }}</a>
 
 {% endblock content %}
