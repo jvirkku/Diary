@@ -17,11 +17,11 @@
 <div class="container">
     <div class="row">
         {% for note in notes %}
-        <div class="card {{ note.category|lower }}-category" style="width: 20rem;">
+        <div class="card {{ note.category|lower }}-category mb-3 me-3" style="width: 15rem;">
             <div class="card-body">
-                <h5 class="card-title text-center fs-3">{{ note.title }}</h5>
+                <h5 class="card-title text-center fs-4">{{ note.title }}</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary text-center pb-3">Category: {{ note.category }}</h6>
-                <p class="card-text fs-5">{{ note.my_note }}</p>
+                <p class="card-text fs-6">{{ note.my_note }}</p>
                 <!-- Additional info about the note -->
                 <h6 class="card-subtitle mb-2 text-body-secondary text-center pt-4 fw-bold">Details</h6>
                 <ul class="list-group list-group-flush">
