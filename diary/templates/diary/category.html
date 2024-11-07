@@ -1,31 +1,25 @@
 {% extends 'diary/base.html' %}
 
-{% block page_header %} 
-    {% if not user.is_authenticated %}
-    <div class="p-3 mb-4 bg-light border rounded-3">
-        <div class="container-fluid py-4">
-            <h1 class="display-3">Create your own notes!</h1>
-            <p class="lead">Add and categorise your notes, ideas and anything you like.</p>
-            <a class="btn btn-primary btn-lg mt-1" href="{% url 'accounts:register' %}">Register &raquo;</a>
-        </div>
-    </div>
-    {% endif %} 
+{% block page_header %}
+
+  <h1 class="ms-3">{{ category.category_name }}</h1>
+
 {% endblock page_header %}
 
+{% block content %}
 
-{% block content %} 
+    <!-- Add Note Button -->
+    <a href="{% url 'diary:add_note' category.id %}" class="btn btn-primary mb-3 ms-3 mt-2">Add Note</a>
 
-{% if user.is_authenticated %}
-<h3 class="text-center pb-4">Press here to add a new note:
-    <a href="{% url 'diary:add_note_extended' %}" class="btn btn-primary mt-2">Add a note</a>
-</h3>
-{% endif %} 
+    <!-- Edit Category Button -->
+    <a href="{% url 'diary:edit_category' category.id %}" class="btn btn-primary mb-3 ms-2 mt-2">Edit Category</a>
 
+<!-- List all notes in this category with cards -->
 <div class="container">
     <div class="row">
         {% for note in notes %}
             <div class="col-md-4">
-                <div class="card {{ note.category|lower }}-category mb-4">
+                <div class="card {{ note.category|lower }}-category mb-3 me-3 mt-2">
                     <div class="card-body {{ note.category|lower }}-category">
                         <h5 class="card-title text-center fs-4 fw-semibold">{{ note.title }}</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary text-center pb-3">Category: {{ note.category }}</h6>
@@ -43,9 +37,7 @@
                 </div>
             </div>
         {% empty %}
-            <div class="col-12">
-                <li class="list-group-item">No notes have been created yet!</li>
-            </div>
+            <li>No notes have been created for this category</li>
         {% endfor %}
     </div>
 </div>

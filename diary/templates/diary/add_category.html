@@ -1,0 +1,15 @@
+{% extends 'diary/base.html' %}
+
+{% block content %}
+
+    <h2>Add New Category</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Category</button>
+    </form>
+    
+    <a href="{% url 'diary:category_list' %}">Categories</a>
+
+{% endblock content %}

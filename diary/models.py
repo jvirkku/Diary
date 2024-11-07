@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     """A category that the user can asign to notes"""
@@ -13,7 +14,7 @@ class Category(models.Model):
         ('#FFFFFF', 'White'),
     ]
 
-    category_name = models.CharField(max_length=100)
+    category_name = models.CharField(max_length=100, default="No category")
     category_colour = models.CharField(max_length=7, choices=COLOUR_CHOICES, default='#FFFFFF')  #default to white
 
     class Meta:
@@ -30,12 +31,14 @@ class Note(models.Model):
         (3, 'High'),
     ]
     
+    title = models.CharField(max_length = 50, default="Untitled") # each note will have a title
     my_note=models.TextField(default="") #string is accepted
     importance=models.IntegerField(choices=IMPORTANCE_CHOICES, default=1)#by default the importance is 1=low
     public=models.BooleanField(default=False)#by default this is not chosen
     date_added=models.DateTimeField(auto_now_add=True) #adds date automatically to new reviews
     date_modified=models.DateTimeField(auto_now=True) #timestamp if review is modified
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)  # Allows null category = a note without a category
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     #category=models.ForeignKey(Category, on_delete=models.CASCADE, default=1)#connects reviews to categories in database
     #                                                      #if a category is deleted, so are the notes
 

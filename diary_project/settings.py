@@ -33,6 +33,10 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # my apps
     'diary',
+    'accounts',
+
+    # Third party apps
+    'django_bootstrap5',
 
     #default django apps
     'django.contrib.admin',
@@ -119,9 +123,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "diary/static",  # Adjust this to point to your static directory if needed
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# My settings
+LOGIN_REDIRECT_URL = 'diary:index'      # redirecting logged user to the main page 
+LOGOUT_REDIRECT_URL = 'diary:index'     # redirecting logged out user to the main page
+LOGIN_URL="accounts:login"
