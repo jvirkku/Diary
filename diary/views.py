@@ -9,7 +9,7 @@ from django.db.models import Q
 def index(request):
     """Index page for diary"""
     if request.user.is_authenticated:
-         notes= Note.objects.filter(Q(owner=request.user) | Q(public=True) ).order_by('date_added')
+         notes= Note.objects.filter(Q(owner=request.user) | Q(public=True)).order_by('date_added')
          context = {'notes' : notes} 
     else:
         notes = Note.objects.filter(public=True).order_by('date_added') #if not logged in, public notes are visible
@@ -42,8 +42,9 @@ def add_category(request):
 def category(request, category_id):
     """Category page that shows one category and all of its notes"""
     category = Category.objects.get(id=category_id)
-    notes = Note.objects.filter(category=category)
-    #note = Note.objects.get(id=note_id)
+    #notes = Note.objects.filter(category=category)
+    notes= Note.objects.filter(category=category).order_by('date_added')
+    notes= Note.objects.filter(Q(owner=request.user, category=category) | Q(public=True, category=category)).order_by('date_added')
     #if note.owner != request.user:
     #    raise Http404
     return render(request, 'diary/category.html', {'category': category, 'notes': notes})
