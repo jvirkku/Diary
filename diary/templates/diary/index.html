@@ -17,7 +17,7 @@
 
 {% if user.is_authenticated %}
 <h3 class="text-center pb-4">Press here to add a new note:
-    <a href="{% url 'diary:add_note_extended' %}">Add a note</a>
+    <a href="{% url 'diary:add_note_extended' %}" class="btn btn-primary mt-2">Add a note</a>
 </h3>
 {% endif %} 
 
